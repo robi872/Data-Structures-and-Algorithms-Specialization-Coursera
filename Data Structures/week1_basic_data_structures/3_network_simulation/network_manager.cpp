@@ -10,34 +10,35 @@ int main()
 	ll s,n,i,c=0,a,p,t=0;
 	queue <ll> q;
 	cin>>s>>n;
-	for(i=0;i<n;i++)
-	{
-	    cin>>a>>p;
-	    while(true)
-	    {
-	        if(q.empty())
-	         break;
-	        if(q.front()>a)
-	         break;
-	        q.pop();
-	    }
-	    if(q.empty())
-	    {
-	        cout<<a<<"\n";
-	        t=a+p;
-	        q.push(t);
-	    }
-	    else
-	    {
-	        if(q.size()==s)
-	         cout<<-1<<"\n";
-	        else
-	        {
-	            cout<<t<<"\n";
-	            t=t+p;
-	            q.push(t);
-	        }
-	    }
-	}
+	for(i = 0; i < n; i++)
+{
+    cin >> a >> p;
+    
+    while(!q.empty() && q.front() <= a)
+    {
+        q.pop();
+    }
+
+    if(q.size() == s)
+    {
+        cout << -1 << "\n";
+    }
+    else
+    {
+        if(q.empty())
+        {
+            cout << a << "\n";
+            t = a + p; 
+        }
+        else
+        {
+            cout << t << "\n";
+            t = t + p;
+        }
+        
+        // Push the calculated finish time of this packet onto the queue
+        q.push(t);
+    }
+  }
 	return 0;
 }
